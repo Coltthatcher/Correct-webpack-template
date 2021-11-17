@@ -50,11 +50,15 @@ module.exports = {
       },
       
       {
-        test:/\.html$/,
-        use: [
-          'html-loader'
-        ]
-      }
+        test: /\.html$/,
+        exclude: [/node_modules/, require.resolve('./src/index.html')],
+        use: {
+            loader: 'file-loader',
+            query: {
+                name: '[name].[ext]'
+            },
+        },
+      },
     ]
   }
 };
